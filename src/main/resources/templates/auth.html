@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>外放快捷+代付</title>
+    <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+</head>
+<body class="form-bg">
+
+<div class="container my-form">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="form-horizontal">
+                <span class="heading">快捷+查询+代付</span>
+                <div class="form-group">
+                    <button id="auth" class="btn btn-default">支付请求</button>
+                </div>
+                <div class="form-group">
+                    <select id="ENVIRONMENT" name="ENVIRONMENT" class="form-control" >
+                        <option value="">选择支付环境</option>
+                        <option value="测试环境">测试环境</option>
+                        <option value="预发布环境">预发布环境</option>
+                        <option value="生产环境">生产环境</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select id="PAYTYPE" name="PAYTYPE" class="form-control" >
+                        <option value="">选择支付类型</option>
+                        <option value="认证支付-申请交易-apply">认证支付申请交易-apply</option>
+                        <option value="认证支付-确认交易-confirm">认证支付确认交易-confirm</option>
+                        <option value="交易结果-查询-queryTradeResult">交易结果-查询-queryTradeResult</option>
+                        <option value="代付交易-paymentTrade">代付交易-paymentTrade</option>
+                    </select>
+                </div>
+
+                <!--<div class="form-group"><input type="text" name="outTradeNo" class="form-control" id="outTradeNo" placeholder="outTradeNo(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="tradeAmount" class="form-control" id="tradeAmount" placeholder="tradeAmount(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="tradeCurrency" class="form-control" id="tradeCurrency" placeholder="tradeCurrency(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="bankCode" class="form-control" id="bankCode" placeholder="bankCode(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="cardType" class="form-control" id="cardType" placeholder="cardType(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="cardNo" class="form-control" id="cardNo" placeholder="cardNo(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="cardExp" class="form-control" id="cardExp" placeholder="cardExp(贷记卡必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="cardCvv" class="form-control" id="cardCvv" placeholder="cardCvv(贷记卡必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="holderName" class="form-control" id="holderName" placeholder="holderName(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="holderIdType" class="form-control" id="holderIdType" placeholder="holderIdType(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="holderIdNo" class="form-control" id="holderIdNo" placeholder="holderIdNo(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="holderMobile" class="form-control" id="holderMobile" placeholder="holderMobile(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="riskInfo" class="form-control" id="riskInfo" placeholder="riskInfo"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="requestIp" class="form-control" id="requestIp" placeholder="requestIp(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="tradeSubject" class="form-control" id="tradeSubject" placeholder="tradeSubject(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="notifyAddress" class="form-control" id="notifyAddress" placeholder="notifyAddress(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="verifyCode" class="form-control" id="verifyCode" placeholder="verifyCode(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="outOrderNo" class="form-control" id="outOrderNo" placeholder="outOrderNo(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="orderNo" class="form-control" id="orderNo" placeholder="orderNo(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="txAmt" class="form-control" id="txAmt" placeholder="txAmt(必填)"><i class="fa fa-user"></i></div>-->
+                <!--<div class="form-group"><input type="text" name="tradeType" class="form-control" id="tradeType" placeholder="tradeType(必填)"><i class="fa fa-user"></i></div>-->
+                <div class="form-group">
+                    <input type="text" name="outTradeNo" class="form-control" id="outTradeNo" placeholder="outTradeNo【必填】 外部请求交易号">
+                    <input type="text" name="tradeAmount" class="form-control" id="tradeAmount" placeholder="tradeAmount【必填】 交易金额单位：分">
+                    <input type="text" name="tradeCurrency" class="form-control" id="tradeCurrency" placeholder="tradeCurrency【必填】交易币种     CNY：人民币">
+                    <input type="text" name="bankCode" class="form-control" id="bankCode" placeholder="bankCode【必填】银行编码     建行CCB 工商ICBC 农行ABC">
+                    <input type="text" name="cardType" class="form-control" id="cardType" placeholder="cardType【必填】银行卡类型     1：借记卡，2：贷记卡">
+                    <input type="text" name="cardNo" class="form-control" id="cardNo" placeholder="cardNo【必填】银行卡号">
+                    <input type="text" name="cardExp" class="form-control" id="cardExp" placeholder="cardExp(贷记卡必填)卡有效期     格式：YYMM">
+                    <input type="text" name="cardCvv" class="form-control" id="cardCvv" placeholder="cardCvv(贷记卡必填)卡CVN2">
+                    <input type="text" name="holderName" class="form-control" id="holderName" placeholder="holderName【必填】持卡人姓名">
+                    <input type="text" name="holderIdType" class="form-control" id="holderIdType" placeholder="holderIdType【必填】持卡人证件类型     IDCARD">
+                    <input type="text" name="holderIdNo" class="form-control" id="holderIdNo" placeholder="holderIdNo【必填】持卡人证件号">
+                    <input type="text" name="holderMobile" class="form-control" id="holderMobile" placeholder="holderMobile【必填】持卡人手机号">
+                    <input type="text" name="riskInfo" class="form-control" id="riskInfo" placeholder="riskInfo风控信息 纬度和经度">
+                    <input type="text" name="requestIp" class="form-control" id="requestIp" placeholder="requestIp【必填】用户请求IP">
+                    <input type="text" name="tradeSubject" class="form-control" id="tradeSubject" placeholder="tradeSubject【必填】    订单摘要">
+                    <input type="text" name="notifyAddress" class="form-control" id="notifyAddress" placeholder="notifyAddress 后台异步通知地址">
+                    <input type="text" name="verifyCode" class="form-control" id="verifyCode" placeholder="verifyCode【必填】认证申请时发送的短信验证码">
+                    <input type="text" name="outOrderNo" class="form-control" id="outOrderNo" placeholder="outOrderNo【必填】外部订单号 out_order_no">
+                    <input type="text" name="orderNo" class="form-control" id="orderNo" placeholder="orderNo【必填】订单编号 order_no">
+                    <input type="text" name="txAmt" class="form-control" id="txAmt" placeholder="txAmt【必填】提现金额">
+                    <input type="text" name="tradeType" class="form-control" id="tradeType" placeholder="tradeType【必填】支付类型     1：认证支付 2：代付">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<style>
+    .my-form {
+        margin-top: 30px;
+    }
+
+    .form-bg {
+        background: #bbd5ef;
+    }
+
+    .form-horizontal {
+        background: #fff;
+        padding-bottom: 40px;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .form-horizontal .heading {
+        display: block;
+        font-size: 25px;
+        font-weight: 700;
+        padding: 35px 0;
+        border-bottom: 1px solid #f0f0f0;
+        margin-bottom: 30px;
+    }
+
+    .form-horizontal .form-group {
+        padding: 0 40px;
+        margin: 0 0 25px 0;
+        position: relative;
+    }
+
+    .form-horizontal .form-control {
+        background: #f0f0f0;
+        border: none;
+        border-radius: 20px;
+        box-shadow: none;
+        padding: 0 20px 0 45px;
+        height: 40px;
+        transition: all 0.3s ease 0s;
+    }
+
+    .form-horizontal .form-control:focus {
+        background: #e0e0e0;
+        box-shadow: none;
+        outline: 0 none;
+    }
+
+    .form-horizontal .form-group i {
+        position: absolute;
+        top: 12px;
+        left: 60px;
+        font-size: 17px;
+        color: #c8c8c8;
+        transition: all 0.5s ease 0s;
+    }
+
+    .form-horizontal .form-control:focus + i {
+        color: #00b4ef;
+    }
+
+    .form-horizontal .fa-question-circle {
+        display: inline-block;
+        position: absolute;
+        top: 12px;
+        right: 60px;
+        font-size: 20px;
+        color: #808080;
+        transition: all 0.5s ease 0s;
+    }
+
+    .form-horizontal .fa-question-circle:hover {
+        color: #000;
+    }
+
+    .form-horizontal .main-checkbox {
+        float: left;
+        width: 20px;
+        height: 20px;
+        background: #11a3fc;
+        border-radius: 50%;
+        position: relative;
+        margin: 5px 0 0 5px;
+        border: 1px solid #11a3fc;
+    }
+
+    .form-horizontal .main-checkbox label {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+
+    .form-horizontal .main-checkbox label:after {
+        content: "";
+        width: 10px;
+        height: 5px;
+        position: absolute;
+        top: 5px;
+        left: 4px;
+        border: 3px solid #fff;
+        border-top: none;
+        border-right: none;
+        background: transparent;
+        opacity: 0;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    .form-horizontal .main-checkbox input[type=checkbox] {
+        visibility: hidden;
+    }
+
+    .form-horizontal .main-checkbox input[type=checkbox]:checked + label:after {
+        opacity: 1;
+    }
+
+    .form-horizontal .text {
+        float: left;
+        margin-left: 7px;
+        line-height: 20px;
+        padding-top: 5px;
+        text-transform: capitalize;
+    }
+
+    .form-horizontal .btn {
+        float: right;
+        font-size: 14px;
+        color: #fff;
+        background: #00b4ef;
+        border-radius: 30px;
+        padding: 10px 25px;
+        border: none;
+        text-transform: capitalize;
+        transition: all 0.5s ease 0s;
+    }
+
+    @media only screen and (max-width: 479px) {
+        .form-horizontal .form-group {
+            padding: 0 25px;
+        }
+
+        .form-horizontal .form-group i {
+            left: 45px;
+        }
+
+        .form-horizontal .btn {
+            padding: 10px 20px;
+        }
+    }
+</style>
+<script>
+    function change(){
+        $("#PAYTYPE").change(function() {
+            var payType =  document.getElementById("PAYTYPE").value;
+            var authBtn = document.getElementById("auth");
+            // alert(payType);
+            switch (payType) {
+                case "认证支付-申请交易-apply":
+                    authBtn.innerHTML = "认证支付-申请";
+                    document.getElementById("outTradeNo").style.display="block";
+                    document.getElementById("tradeAmount").style.display="block";
+                    document.getElementById("tradeCurrency").style.display="block";
+                    document.getElementById("bankCode").style.display="block";
+                    document.getElementById("cardType").style.display="block";
+                    document.getElementById("cardNo").style.display="block";
+                    document.getElementById("cardExp").style.display="block";
+                    document.getElementById("cardCvv").style.display="block";
+                    document.getElementById("holderName").style.display="block";
+                    document.getElementById("holderIdType").style.display="block";
+                    document.getElementById("holderIdNo").style.display="block";
+                    document.getElementById("holderMobile").style.display="block";
+                    document.getElementById("riskInfo").style.display="block";
+                    document.getElementById("requestIp").style.display="none";
+                    document.getElementById("tradeSubject").style.display="none";
+                    document.getElementById("notifyAddress").style.display="none";
+                    document.getElementById("verifyCode").style.display="none";
+                    document.getElementById("outOrderNo").style.display="none";
+                    document.getElementById("orderNo").style.display="none";
+                    document.getElementById("txAmt").style.display="none";
+                    document.getElementById("tradeType").style.display="none";
+                    break;
+                case "认证支付-确认交易-confirm":
+                    authBtn.innerHTML = "认证支付-确认";
+                    document.getElementById("outTradeNo").style.display="block";
+                    document.getElementById("tradeAmount").style.display="block";
+                    document.getElementById("tradeCurrency").style.display="block";
+                    document.getElementById("bankCode").style.display="block";
+                    document.getElementById("cardType").style.display="block";
+                    document.getElementById("cardNo").style.display="block";
+                    document.getElementById("cardExp").style.display="block";
+                    document.getElementById("cardCvv").style.display="block";
+                    document.getElementById("holderName").style.display="block";
+                    document.getElementById("holderIdType").style.display="block";
+                    document.getElementById("holderIdNo").style.display="block";
+                    document.getElementById("holderMobile").style.display="block";
+                    document.getElementById("riskInfo").style.display="block";
+                    document.getElementById("requestIp").style.display="block";
+                    document.getElementById("tradeSubject").style.display="block";
+                    document.getElementById("notifyAddress").style.display="block";
+                    document.getElementById("verifyCode").style.display="block";
+                    document.getElementById("outOrderNo").style.display="none";
+                    document.getElementById("orderNo").style.display="none";
+                    document.getElementById("txAmt").style.display="none";
+                    document.getElementById("tradeType").style.display="none";
+                    break;
+                case "交易结果-查询-queryTradeResult":
+                    authBtn.innerHTML = "交易结果-查询";
+                    document.getElementById("outTradeNo").style.display="none";
+                    document.getElementById("tradeAmount").style.display="none";
+                    document.getElementById("tradeCurrency").style.display="none";
+                    document.getElementById("bankCode").style.display="none";
+                    document.getElementById("cardType").style.display="none";
+                    document.getElementById("cardNo").style.display="none";
+                    document.getElementById("cardExp").style.display="none";
+                    document.getElementById("cardCvv").style.display="none";
+                    document.getElementById("holderName").style.display="none";
+                    document.getElementById("holderIdType").style.display="none";
+                    document.getElementById("holderIdNo").style.display="none";
+                    document.getElementById("holderMobile").style.display="none";
+                    document.getElementById("riskInfo").style.display="none";
+                    document.getElementById("requestIp").style.display="none";
+                    document.getElementById("tradeSubject").style.display="none";
+                    document.getElementById("notifyAddress").style.display="none";
+                    document.getElementById("verifyCode").style.display="none";
+                    document.getElementById("outOrderNo").style.display="none";
+                    document.getElementById("orderNo").style.display="block";
+                    document.getElementById("txAmt").style.display="none";
+                    document.getElementById("tradeType").style.display="block";
+                    break;
+                case "代付交易-paymentTrade":
+                    authBtn.innerHTML = "代付交易";
+                    document.getElementById("outTradeNo").style.display="none";
+                    document.getElementById("tradeAmount").style.display="none";
+                    document.getElementById("tradeCurrency").style.display="none";
+                    document.getElementById("bankCode").style.display="block";
+                    document.getElementById("cardType").style.display="none";
+                    document.getElementById("cardNo").style.display="block";
+                    document.getElementById("cardExp").style.display="none";
+                    document.getElementById("cardCvv").style.display="none";
+                    document.getElementById("holderName").style.display="block";
+                    document.getElementById("holderIdType").style.display="none";
+                    document.getElementById("holderIdNo").style.display="block";
+                    document.getElementById("holderMobile").style.display="block";
+                    document.getElementById("riskInfo").style.display="none";
+                    document.getElementById("requestIp").style.display="block";
+                    document.getElementById("tradeSubject").style.display="block";
+                    document.getElementById("notifyAddress").style.display="none";
+                    document.getElementById("verifyCode").style.display="none";
+                    document.getElementById("outOrderNo").style.display="block";
+                    document.getElementById("orderNo").style.display="block";
+                    document.getElementById("txAmt").style.display="block";
+                    document.getElementById("tradeType").style.display="none";
+                    break;
+                default:
+            }
+
+        });
+    }
+
+
+    $(document).ready(function () {
+        change();
+//        user = $("#reg_user").val();
+//        password = $("#reg_password").val();
+
+
+        $("#auth").click(function () {
+
+            $.post("auth",
+                {
+                    ENVIRONMENT: $("#ENVIRONMENT").val(),
+                    PAYTYPE: $("#PAYTYPE").val(),
+                    outTradeNo:$("#outTradeNo").val(),
+                    tradeAmount:$("#tradeAmount").val(),
+                    tradeCurrency:$("#tradeCurrency").val(),
+                    bankCode:$("#bankCode").val(),
+                    cardType:$("#cardType").val(),
+                    cardNo:$("#cardNo").val(),
+                    cardExp:$("#cardExp").val(),
+                    cardCvv:$("#cardCvv").val(),
+                    holderName:$("#holderName").val(),
+                    holderIdType:$("#holderIdType").val(),
+                    holderIdNo:$("#holderIdNo").val(),
+                    holderMobile:$("#holderMobile").val(),
+                    riskInfo:$("#riskInfo").val(),
+                    requestIp:$("#requestIp").val(),
+                    tradeSubject:$("#tradeSubject").val(),
+                    notifyAddress:$("#notifyAddress").val(),
+                    verifyCode:$("#verifyCode").val(),
+                    outOrderNo:$("#outOrderNo").val(),
+                    orderNo:$("#orderNo").val(),
+                    txAmt:$("#txAmt").val(),
+                    tradeType:$("#tradeType").val()
+                },
+                function (data, status) {
+                    alert("请求响应: " + data + "\nStatus: " + status);
+                });
+
+        });
+    });
+
+</script>
+</html>

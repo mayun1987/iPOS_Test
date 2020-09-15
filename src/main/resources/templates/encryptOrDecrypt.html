@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>加减密工具</title>
+    <!--<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>-->
+    <!--<link rel="stylesheet" type="text/css" href="theme.css" />-->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+</head>
+<body class="form-bg">
+
+<div class="container my-form">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="form-horizontal">
+                <span class="heading">加解密工具</span>
+                <!--<div class="form-group">-->
+
+                <!--</div>-->
+                <div class="form-group">
+                    <button id="run" class="btn btn-default">运行</button>
+                    <select id="MODE" name="MODE" class="form-control" >
+                        <option value="推送AESUtil">推送AESUtil</option>
+                        <option value="生活退款DESede">生活退款DESede</option>
+                        <option value="POS-RSA">POS-RSA</option>
+                        <option value="二维码SecureUtil">二维码SecureUtil</option>
+                    </select>
+                    <select id="TYPE" name="TYPE" class="form-control" >
+                        <option value="encrypt加密">encrypt加密</option>
+                        <option value="decrypt解密">decrypt解密</option>
+                        <option value="sign加签">sign加签</option>
+                        <option value="sign验签">sign验签</option>
+                    </select>
+
+                </div>
+                <!--<div class="form-group">
+                    <input type="text" name="url" class="form-control" id="url" placeholder="url请求地址（环境其他必填）">
+                    <i class="fa fa-lock"></i>
+                </div>-->
+
+                <div class="form-group">
+                    <textarea rows="2" cols="10" name="key1" id="key1" placeholder="密钥1"></textarea>
+                    <textarea rows="2" cols="110" name="keyValue1" id="keyValue1" placeholder="密钥1"></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea rows="2" cols="10" name="key2" id="key2" placeholder="密钥2"></textarea>
+                    <textarea rows="2" cols="110" name="keyValue2" id="keyValue2" placeholder="密钥2"></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea rows="2" cols="10" name="key3" id="key3" placeholder="密钥3"></textarea>
+                    <textarea rows="2" cols="110" name="keyValue3" id="keyValue3" placeholder="密钥3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <!--<input type="text" name="sendMap" class="form-control" id="sendMap" placeholder="请求map">-->
+                    <textarea rows="16" cols="60" name="request" id="request" placeholder="请求"></textarea>
+                    <i class="fa fa-lock"></i>
+                    <textarea rows="16" cols="60" name="response" id="response" placeholder="返回"></textarea>
+                    <i class="fa fa-lock"></i>
+                </div>
+
+                <!--<div class="form-group">-->
+                    <!--<button id="run" class="btn btn-default">运行</button>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<style>
+    .my-form {
+        margin-top: 50px;
+    }
+
+    .form-bg {
+        background: #bbd5ef;
+    }
+
+    .form-horizontal {
+        background: #fff;
+        padding-bottom: 40px;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .form-horizontal .heading {
+        display: block;
+        font-size: 25px;
+        font-weight: 700;
+        padding: 35px 0;
+        border-bottom: 1px solid #f0f0f0;
+        margin-bottom: 30px;
+    }
+
+    .form-horizontal .form-group {
+        padding: 0 40px;
+        margin: 0 0 25px 0;
+        position: relative;
+    }
+
+    .form-horizontal .form-control {
+        background: #f0f0f0;
+        border: none;
+        border-radius: 20px;
+        box-shadow: none;
+        padding: 0 20px 0 45px;
+        height: 40px;
+        transition: all 0.3s ease 0s;
+    }
+
+    .form-horizontal .form-control:focus {
+        background: #e0e0e0;
+        box-shadow: none;
+        outline: 0 none;
+    }
+
+    .form-horizontal .form-group i {
+        position: absolute;
+        top: 12px;
+        left: 60px;
+        font-size: 17px;
+        color: #c8c8c8;
+        transition: all 0.5s ease 0s;
+    }
+
+    .form-horizontal .form-control:focus + i {
+        color: #00b4ef;
+    }
+
+    .form-horizontal .fa-question-circle {
+        display: inline-block;
+        position: absolute;
+        top: 12px;
+        right: 60px;
+        font-size: 20px;
+        color: #808080;
+        transition: all 0.5s ease 0s;
+    }
+
+    .form-horizontal .fa-question-circle:hover {
+        color: #000;
+    }
+
+    .form-horizontal .main-checkbox {
+        float: left;
+        width: 20px;
+        height: 20px;
+        background: #11a3fc;
+        border-radius: 50%;
+        position: relative;
+        margin: 5px 0 0 5px;
+        border: 1px solid #11a3fc;
+    }
+
+    .form-horizontal .main-checkbox label {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+
+    .form-horizontal .main-checkbox label:after {
+        content: "";
+        width: 10px;
+        height: 5px;
+        position: absolute;
+        top: 5px;
+        left: 4px;
+        border: 3px solid #fff;
+        border-top: none;
+        border-right: none;
+        background: transparent;
+        opacity: 0;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    .form-horizontal .main-checkbox input[type=checkbox] {
+        visibility: hidden;
+    }
+
+    .form-horizontal .main-checkbox input[type=checkbox]:checked + label:after {
+        opacity: 1;
+    }
+
+    .form-horizontal .text {
+        float: left;
+        margin-left: 7px;
+        line-height: 20px;
+        padding-top: 5px;
+        text-transform: capitalize;
+    }
+
+    .form-horizontal .btn {
+        float: right;
+        font-size: 14px;
+        color: #fff;
+        background: #00b4ef;
+        border-radius: 30px;
+        padding: 10px 25px;
+        border: none;
+        text-transform: capitalize;
+        transition: all 0.5s ease 0s;
+    }
+
+    @media only screen and (max-width: 479px) {
+        .form-horizontal .form-group {
+            padding: 0 25px;
+        }
+
+        .form-horizontal .form-group i {
+            left: 45px;
+        }
+
+        .form-horizontal .btn {
+            padding: 10px 20px;
+        }
+    }
+</style>
+<script type="text/javascript">
+            // alert(pushType);
+            //默认推送密钥
+            $('#key1').val("密钥");
+            $('#keyValue1').val("qianbaoipospushx");
+            function change(){
+                $("#MODE").change(function() {
+                    var MODE =  document.getElementById("MODE").value;
+            switch (MODE) {
+                case "POS-RSA":
+                    $('#key1').val("PublicKey公钥");
+                    $('#key2').val("PrivateKey私钥");
+                    $('#key3').val("");
+                    $('#keyValue1').val("MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCZKfh+STLXOgjdr2iYG8xqVoAqXgEBrP2WPzKOtn+pOkE9hyWKfom4dlX1HcvByl4v2BTKCcK9+23GlIe6l8jXo4knkO1lx1ieJAnt3BYz8haEESefRG/zUPuKUOholCMThglTPvUa0nOKSCbu8J8RWRUe7Tqk+kctAgqOzc8MMwIDAQAB");
+                    $('#keyValue2').val("MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKEZTbLYDUUL80HAWxIyza377xkS8XB+kWGWtM4ZMvmCi5LMLaxapqBnflgSb6ctFVeNg+lI5WlHBTcwuBVTO3I3sozPSx7yIzpmf7cKcDUSgrwajwW4S83MrOe8ZJ41fu8rv0hT94y1XziNdvTCUaNHayWYJ7WRt9iktbnwAfM1AgMBAAECgYBgBQrwrCHMo8DL0fD2Od2p892hHk9V87qHZiJCLXbajNrQFm6qqiViugzuRZ7TD+YGl0ymgVJrm28aZCl0XHWzPfhGcMxmSl2EklxvftcgwPLZySFRIw+8nqWgCFGbhIpV9zWIuW8mB/rNJ4+00fTyarRftvwBpl9Z3gpUJCHJyQJBANRKDyAGXeSvAZCC+i1/c/PP200EQP7/SQ1fHQgGnSICQ1YoYbBt3C63BLNwYOKsVqnQjKixtZjrUHJVoIa0yxsCQQDCRPRF5/JiOHj1OobdjWqSS5L8DYn2BQUa75WvhRQN+5zeY0V9kQ80y8ty+E0b8O0k09JIyhsP8/8pye1NUU/vAkEAvs9aTPSsDFJo25V+fMqkVC8t9EmwigK3jLdDBuW68siJ8bUWKVh1od+K8CZATz2MH9J9u1sP2MUZZ8sjIDD8pQJAUaspQcYbmH0DJJyhG7yao7vPo9SRPfKoTcWQmMQKRUKUlM0I5pu318sg0UlfKTLkjsnZqi4EqHU7vLad4xYe0wJAZhVm3kaWrhhZcDeHKmynY83goZXgXVhmsx6pSGQ0d2mC9R+Vm5pMkAyXrz5LXszOHu81AmdOLDVPqURgMuUAaQ==");
+                    $('#keyValue3').val("");
+                    break;
+                case "推送AESUtil":
+                    $('#key1').val("密钥");
+                    $('#key2').val("");
+                    $('#key3').val("");
+                    $('#keyValue1').val("qianbaoipospushx");
+                    $('#keyValue2').val("");
+                    $('#keyValue3').val("");
+                    break;
+                case "生活退款DESede":
+                    $('#key1').val("测试密钥");
+                    $('#key2').val("生产密钥");
+                    $('#key3').val("");
+                    $('#keyValue1').val("ZWQ1N2M2ZTctNDdkMi00Nzk0LWE5ZmQtODM1ZDVmZjMwYTFh");
+                    $('#keyValue2').val("zm39nfhzKZ7EC4AskZSM1UBtDtlXJZ0I");
+                    $('#keyValue3').val("");
+                    break;
+                case "二维码SecureUtil":
+                    $('#key1').val("商户公钥");
+                    $('#key2').val("商户私钥");
+                    $('#key3').val("公钥验签");
+                    $('#keyValue1').val("MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCw7O6jqxbiWY3g1HNsuFvjb6i+DkuGPlib7ACq03XOEpkaK+udtzDbX0EUghQJJRzxcpjjKP4Cz9MNJs4APnjCqMMenvNKm4qLLtB8gFYZy5goWAO5NdHD9vuH7H0WVFbv5FAdgsNMB7fwKLWZdUMwAYQAosMTQvj8I9x1wiWFFwIDAQAB");
+                    $('#keyValue2').val("MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAOG/PZWEtjaOJL+S6lyf3fLGbWKi/REre7h1r0UQMuBO0aRxZwjejpxMk3wV1TxOh54yZVoM4u8pDm5o5f2XVPtd7TAQkVHDn/r+j11JmbHSDJwu/Kc/S9xLU8CFcO+2coX4pNgsn3UKY6psjnT8zK4v7YqybxiOK2kgFht8qYtdAgMBAAECgYBm11iW5P6dm+Ph4mwiBjJ2hy8N4HKpf8W9It/V9qs2xLF82Ky3vav6SGhn/wpFjwD5cLv7aiN4EJwicGdWP7rWbZ0xGGE8oz5fFKsC5PTcwDCgJfUJCj/YyQa1hmZ2EWxZNf1EQzH2WaKCpyazK4sPwmVXe2Uo1xO7787HRSptgQJBAPpNZ38tK8Xkhti9+8NbMRPnQcdL01N3C1AqMK9jkxRDPaAEgTbwC6i697rf1QxmfcswBHb8PuZ3FUMaSTh5RnMCQQDm4r6BUdvefsuDS9QUchKIzP+qLzCrRmKaTyozpsXKxdP8yhhlcXTOYErk6WQ9ymEeUTH9d3p56WUeeDGUtKLvAkA876k5sfKNK/SUQbRQPBw3nz5JWbFqCXpMmujdWh2Nek0/brlSeaAtBM+YxDNm4HDRjbAYk5Jwox8fBgA7anL3AkEAnOcwYX+4tH5kXUiVyoMu90qg4A2LvIlrjsQHwOwv9Dn2cw7//0hYAbvMib3WAmvbDhhNqZudXuXucwNpZk5PfwJBAOq7yufcTlatuaXjW8+Sj7Sa5T0mwY7Lc8QwaVMXglZNu3cx3s/AARx3pZyggZSFMRee31lDhOTdnLBvnaxkrRA=");
+                    $('#keyValue3').val("MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDhvz2VhLY2jiS/kupcn93yxm1iov0RK3u4da9FEDLgTtGkcWcI3o6cTJN8FdU8ToeeMmVaDOLvKQ5uaOX9l1T7Xe0wEJFRw5/6/o9dSZmx0gycLvynP0vcS1PAhXDvtnKF+KTYLJ91CmOqbI50/MyuL+2Ksm8YjitpIBYbfKmLXQIDAQAB");
+                    break;
+
+
+                default:
+            }
+
+        });
+    }
+
+    $(document).ready(function () {
+        change();
+
+        $("#run").click(function () {
+            $('#response').val("点击了");
+            $.post("encryptOrDecrypt",
+                {
+                    MODE: $("#MODE").val(),
+                    TYPE: $("#TYPE").val(),
+                    key1: $("#key1").val(),
+                    key2: $("#key2").val(),
+                    key3: $("#key3").val(),
+                    keyValue1: $("#keyValue1").val(),
+                    keyValue2: $("#keyValue2").val(),
+                    keyValue3: $("#keyValue3").val(),
+                    request: $("#request").val(),
+                    response: $("#response").val(),
+                    /*order: $("#order").val(),
+                    amt: $("#amt").val(),
+                    content: $("#content").val()*/
+
+                },
+                function (data, status) {
+                    alert("请求响应: " + data + "\nStatus: " + status);
+                    $('#response').val(data);
+                });
+
+        });
+    });
+
+</script>
+</html>

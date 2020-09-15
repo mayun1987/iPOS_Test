@@ -1,0 +1,58 @@
+[2020-07-22 15:35:42.697][INFO][][][:][:][][][main|c.q.i.IPOSApplication||] - Starting IPOSApplication on HDB-PC201603021 with PID 14172 (D:\workspaceIDEA\iPOS_Test\target\classes started by mayun in D:\workspaceIDEA\iPOS_Test)
+[2020-07-22 15:35:42.752][DEBUG][][][:][:][][][main|c.q.i.IPOSApplication||] - Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+[2020-07-22 15:35:42.753][INFO][][][:][:][][][main|c.q.i.IPOSApplication||] - No active profile set, falling back to default profiles: default
+[2020-07-22 15:35:43.047][INFO][][][:][:][][][main|o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext||] - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6913c1fb: startup date [Wed Jul 22 15:35:42 CST 2020]; root of context hierarchy
+[2020-07-22 15:35:46.719][INFO][][][:][:][][][main|o.s.b.w.e.t.TomcatWebServer||] - Tomcat initialized with port(s): 8080 (http)
+[2020-07-22 15:35:46.753][INFO][][][:][:][][][main|o.a.c.h.Http11NioProtocol||] - Initializing ProtocolHandler ["http-nio-8080"]
+[2020-07-22 15:35:46.790][INFO][][][:][:][][][main|o.a.c.c.StandardService||] - Starting service [Tomcat]
+[2020-07-22 15:35:46.790][INFO][][][:][:][][][main|o.a.c.c.StandardEngine||] - Starting Servlet Engine: Apache Tomcat/8.5.29
+[2020-07-22 15:35:46.830][INFO][][][:][:][][][localhost-startStop-1|o.a.c.c.AprLifecycleListener||] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\Java\jdk1.8.0_31\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32;D:\Java\jdk1.8.0_31/bin;D:\Java\jdk1.8.0_31/jre/bin;D:\adt-bundle-windows-x86_64-20140624\sdk\platform-tools;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;D:\apache-maven-3.2.3\bin;D:\Program Files\TortoiseGit\bin;D:\Program Files\Git\cmd;D:\Python37-32\Scripts;.]
+[2020-07-22 15:35:47.083][INFO][][][:][:][][][localhost-startStop-1|o.a.c.c.C.[.[.[/]||] - Initializing Spring embedded WebApplicationContext
+[2020-07-22 15:35:47.084][INFO][][][:][:][][][localhost-startStop-1|o.s.w.c.ContextLoader||] - Root WebApplicationContext: initialization completed in 4139 ms
+[2020-07-22 15:35:47.283][INFO][][][:][:][][][localhost-startStop-1|o.s.b.w.s.ServletRegistrationBean||] - Servlet dispatcherServlet mapped to [/]
+[2020-07-22 15:35:47.291][INFO][][][:][:][][][localhost-startStop-1|o.s.b.w.s.FilterRegistrationBean||] - Mapping filter: 'characterEncodingFilter' to: [/*]
+[2020-07-22 15:35:47.291][INFO][][][:][:][][][localhost-startStop-1|o.s.b.w.s.FilterRegistrationBean||] - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+[2020-07-22 15:35:47.291][INFO][][][:][:][][][localhost-startStop-1|o.s.b.w.s.FilterRegistrationBean||] - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+[2020-07-22 15:35:47.292][INFO][][][:][:][][][localhost-startStop-1|o.s.b.w.s.FilterRegistrationBean||] - Mapping filter: 'requestContextFilter' to: [/*]
+[2020-07-22 15:35:47.591][INFO][][][:][:][][][main|o.s.w.s.h.SimpleUrlHandlerMapping||] - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2020-07-22 15:35:47.873][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerAdapter||] - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6913c1fb: startup date [Wed Jul 22 15:35:42 CST 2020]; root of context hierarchy
+[2020-07-22 15:35:48.023][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/pxPay],methods=[POST]}" onto public java.lang.String com.qianbao.ipos.controller.Auth_TestController.PxPay(com.qianbao.ipos.bean.PxPay)
+[2020-07-22 15:35:48.024][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/auth],methods=[POST]}" onto public java.lang.String com.qianbao.ipos.controller.AuthController.Auth_apply_confirm(com.qianbao.ipos.bean.PxPay)
+[2020-07-22 15:35:48.025][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/encryptOrDecrypt],methods=[POST]}" onto public java.lang.String com.qianbao.ipos.controller.EncryptOrDecryptController.EncryptOrDecrypt(com.qianbao.ipos.bean.EncryptOrDecrypt) throws java.lang.Exception
+[2020-07-22 15:35:48.032][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/push],methods=[GET]}" onto public java.lang.String com.qianbao.ipos.controller.IndexController.push()
+[2020-07-22 15:35:48.033][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/encryptOrDecrypt.html],methods=[GET]}" onto public java.lang.String com.qianbao.ipos.controller.IndexController.encryptOrDecrypt()
+[2020-07-22 15:35:48.033][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/refund],methods=[GET]}" onto public java.lang.String com.qianbao.ipos.controller.IndexController.refund()
+[2020-07-22 15:35:48.034][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/interfaceTool],methods=[GET]}" onto public java.lang.String com.qianbao.ipos.controller.IndexController.interfaceTool()
+[2020-07-22 15:35:48.035][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/auth],methods=[GET]}" onto public java.lang.String com.qianbao.ipos.controller.IndexController.auth()
+[2020-07-22 15:35:48.036][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/interfaceTool],methods=[POST]}" onto public java.lang.String com.qianbao.ipos.controller.InterfaceToolController.InterfaceSend(com.qianbao.ipos.bean.InterfaceTool) throws java.lang.Exception
+[2020-07-22 15:35:48.036][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/push],methods=[POST]}" onto public java.lang.String com.qianbao.ipos.controller.PushController.PushTerminalNo(com.qianbao.ipos.bean.Push)
+[2020-07-22 15:35:48.037][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/refund],methods=[POST]}" onto public java.lang.String com.qianbao.ipos.controller.RefundController.Refund(com.qianbao.ipos.bean.Refund)
+[2020-07-22 15:35:48.040][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+[2020-07-22 15:35:48.041][INFO][][][:][:][][][main|o.s.w.s.m.m.a.RequestMappingHandlerMapping||] - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[2020-07-22 15:35:48.073][INFO][][][:][:][][][main|o.s.w.s.h.SimpleUrlHandlerMapping||] - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2020-07-22 15:35:48.075][INFO][][][:][:][][][main|o.s.w.s.h.SimpleUrlHandlerMapping||] - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2020-07-22 15:35:48.329][INFO][][][:][:][][][main|o.s.b.a.w.s.WelcomePageHandlerMapping||] - Adding welcome page template: index
+[2020-07-22 15:35:48.520][INFO][][][:][:][][][main|o.s.j.e.a.AnnotationMBeanExporter||] - Registering beans for JMX exposure on startup
+[2020-07-22 15:35:48.540][INFO][][][:][:][][][main|o.a.c.h.Http11NioProtocol||] - Starting ProtocolHandler ["http-nio-8080"]
+[2020-07-22 15:35:48.551][INFO][][][:][:][][][main|o.a.t.u.n.NioSelectorPool||] - Using a shared selector for servlet write/read
+[2020-07-22 15:35:48.573][INFO][][][:][:][][][main|o.s.b.w.e.t.TomcatWebServer||] - Tomcat started on port(s): 8080 (http) with context path ''
+[2020-07-22 15:35:48.577][INFO][][][:][:][][][main|c.q.i.IPOSApplication||] - Started IPOSApplication in 6.79 seconds (JVM running for 13.923)
+[2020-07-22 15:36:39.733][INFO][][][:][:][][][http-nio-8080-exec-3|o.a.c.c.C.[.[.[/]||] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+[2020-07-22 15:36:39.733][INFO][][][:][:][][][http-nio-8080-exec-3|o.s.w.s.DispatcherServlet||] - FrameworkServlet 'dispatcherServlet': initialization started
+[2020-07-22 15:36:39.755][INFO][][][:][:][][][http-nio-8080-exec-3|o.s.w.s.DispatcherServlet||] - FrameworkServlet 'dispatcherServlet': initialization completed in 22 ms
+[2020-07-22 15:40:13.263][INFO][][][:][:][][][http-nio-8080-exec-2|c.q.i.c.RefundController||] - ENVIRONMENT！测试环境
+[2020-07-22 15:40:13.264][INFO][][][:][:][][][http-nio-8080-exec-2|c.q.i.c.RefundController||] - ENVIRONMENT-url：https://sit-apis.qianbao.com/ipos/v1/qblife/refundOrder
+[2020-07-22 15:40:13.264][INFO][][][:][:][][][http-nio-8080-exec-2|c.q.i.c.RefundController||] - 订单号不能为空！
+[2020-07-22 15:40:28.915][INFO][][][:][:][][][http-nio-8080-exec-1|c.q.i.c.RefundController||] - ENVIRONMENT！生产环境
+[2020-07-22 15:40:28.915][INFO][][][:][:][][][http-nio-8080-exec-1|c.q.i.c.RefundController||] - ENVIRONMENT-url：https://apis.qianbao.com/ipos/v1/qblife/refundOrder
+[2020-07-22 15:40:28.915][INFO][][][:][:][][][http-nio-8080-exec-1|c.q.i.c.RefundController||] - 订单号不能为空！
+[2020-07-22 15:40:40.380][INFO][][][:][:][][][http-nio-8080-exec-4|c.q.i.c.AuthController||] - 支付环境不能为空！
+[2020-07-22 15:40:46.348][INFO][][][:][:][][][http-nio-8080-exec-6|c.q.i.c.InterfaceToolController||] - ENVIRONMENT：自定义
+[2020-07-22 15:40:46.348][INFO][][][:][:][][][http-nio-8080-exec-6|c.q.i.c.InterfaceToolController||] - SENDTYPE：POST请求
+[2020-07-22 15:40:46.348][INFO][][][:][:][][][http-nio-8080-exec-6|c.q.i.c.InterfaceToolController||] - 请求url不能为空！请输入或选择地址！
+[2020-07-22 15:40:49.572][INFO][][][:][:][][][http-nio-8080-exec-7|c.q.i.c.InterfaceToolController||] - ENVIRONMENT：自定义
+[2020-07-22 15:40:49.573][INFO][][][:][:][][][http-nio-8080-exec-7|c.q.i.c.InterfaceToolController||] - SENDTYPE：POST请求
+[2020-07-22 15:40:49.573][INFO][][][:][:][][][http-nio-8080-exec-7|c.q.i.c.InterfaceToolController||] - 请求url不能为空！请输入或选择地址！
+[2020-07-22 15:41:03.255][INFO][][][:][:][][][http-nio-8080-exec-9|c.q.i.c.EncryptOrDecryptController||] - iGcV1/EPy1F3drU7h5hDeA==
+[2020-07-22 15:41:03.255][INFO][][][:][:][][][http-nio-8080-exec-10|c.q.i.c.EncryptOrDecryptController||] - iGcV1/EPy1F3drU7h5hDeA==
+[2020-07-22 15:41:07.921][INFO][][][:][:][][][http-nio-8080-exec-2|c.q.i.c.EncryptOrDecryptController||] - iGcV1/EPy1F3drU7h5hDeA==
